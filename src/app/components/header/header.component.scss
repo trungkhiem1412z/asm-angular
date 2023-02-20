@@ -1,0 +1,22 @@
+.header-top {
+    .btn-a {
+        &:hover {
+            background-color: #2e84e1;
+            color: #fff;
+        }
+    }
+}
+
+// .navbar {
+//     .navbar-brand {
+//         img {
+//             width: 120px;
+//         }
+//     }
+// }
+
+@media screen and (max-width: 480px) {
+    .header-top {
+        display: none;
+    }
+}

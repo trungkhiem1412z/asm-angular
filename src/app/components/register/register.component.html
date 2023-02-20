@@ -1,0 +1,21 @@
+<div class="d-flex justify-content-center mt-4">
+    <form class="col-3" action="">
+        <div class="mb-3">
+            <label class="form-label">Tài khoản</label>
+            <input type="text" class="form-control shadow-none" [(ngModel)]="userName" name="userName"
+                placeholder="Tài khoản">
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Mật khẩu</label>
+            <input type="text" class="form-control shadow-none" [(ngModel)]="password" name="password"
+                placeholder="Mật khẩu">
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Nhập lại mật khẩu</label>
+            <input type="text" class="form-control shadow-none" placeholder="Nhập lại mật khẩu">
+        </div>
+        <button class="btn btn-primary" (click)="register()" type="submit">
+            Đăng ký
+        </button>
+    </form>
+</div>
