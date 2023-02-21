@@ -5,3 +5,8 @@ export interface Category {
   createdAt?: Date;
   updatedAt?: Date;
 }
+
+export interface UpdatedCategory {
+  nameCate: string;
+  urlCate: string;
+}

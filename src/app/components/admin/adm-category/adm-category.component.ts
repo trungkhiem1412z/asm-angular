@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ViewChild, ElementRef, OnInit } from '@angular/core';
 import { CategoryService } from '../../../service/category.service';
-import { Category } from '../../../interface/category';
+import { Category, UpdatedCategory } from '../../../interface/category';
+import { FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-adm-category',
@@ -8,11 +9,23 @@ import { Category } from '../../../interface/category';
   styleUrls: ['./adm-category.component.scss'],
 })
 export class AdmCategoryComponent implements OnInit {
+  // Lấy 2 giá trị value trong form Update
+  @ViewChild('udtnameCate') udtnameCate!: ElementRef;
+  @ViewChild('udturlCate') udturlCate!: ElementRef;
+  //
   categories: Category[] = [];
-  cateDetail: Category[] = [];
+  // Khai báo giá trị ban đầu cateDetail là Null
+  cateDetail: Category | null = null;
   newCategory: Category = { nameCate: '', urlCate: '' };
+  selectedCategoryId!: number;
+
+  updatedCategoryDetail: UpdatedCategory = {
+    nameCate: '',
+    urlCate: '',
+  };
 
   constructor(private categoryService: CategoryService) {}
+
   // Lấy tất cả danh mục
   ngOnInit() {
     // this.categoryService.getCategories().subscribe((categories) => (this.categories = categories));
@@ -34,8 +47,28 @@ export class AdmCategoryComponent implements OnInit {
   getCateDetailById(idCate: number) {
     this.categoryService.getCategoryDetail(idCate).subscribe((data) => {
       this.cateDetail = data;
-      console.log(`Detail: ${JSON.stringify(this.cateDetail)}`);
+      // console.log(`Detail: ${JSON.stringify(this.cateDetail)}`);
+      this.ngOnInit();
     });
+  }
+  // Update danh mục
+  updatedCategory(idCate: number | undefined, updateCateFormValue: any) {
+    const updatedCategoryDetail: UpdatedCategory = {
+      // nameCate: updateCateFormValue.nameCate,
+      // urlCate: updateCateFormValue.urlCate,
+      nameCate: this.udtnameCate.nativeElement.value,
+      urlCate: this.udturlCate.nativeElement.value,
+    };
+    console.log(updatedCategoryDetail);
+    this.categoryService.updateCateById(idCate!, updatedCategoryDetail).subscribe(
+      (response) => {
+        console.log(response);
+        this.ngOnInit();
+      },
+      (error) => {
+        console.log('Error:', error.message);
+      }
+    );
   }
   // Xoá danh mục
   delCateById(idCate: number) {
