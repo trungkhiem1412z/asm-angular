@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { HomePageComponent } from './components/home-page/home-page.component';
+import { AdmCategoryComponent } from './components/admin/adm-category/adm-category.component';
+import { AdmManageComponent } from './components/admin/adm-manage/adm-manage.component';
+import { HomePageComponent } from './components/client/home-page/home-page.component';
 import { LoginComponent } from './components/login/login.component';
 import { PagenotfoundComponent } from './components/pagenotfound/pagenotfound.component';
 import { RegisterComponent } from './components/register/register.component';
@@ -25,7 +27,14 @@ const routes: Routes = [
     component: ClientLayoutComponent,
     children: [{ path: '', title: 'Đăng ký', component: RegisterComponent }],
   },
-  { path: 'admin', title: 'Admin', component: AdminLayoutComponent },
+  {
+    path: 'admin',
+    component: AdminLayoutComponent,
+    children: [
+      { path: '', title: 'Admin Manager', component: AdmManageComponent },
+      { path: 'category', title: 'Quản lý danh mục', component: AdmCategoryComponent },
+    ],
+  },
   { path: '**', title: '404', component: PagenotfoundComponent },
 ];
 
