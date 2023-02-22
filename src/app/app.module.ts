@@ -2,6 +2,7 @@ import { NgModule, InjectionToken } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -15,6 +16,7 @@ import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
 import { AdmManageComponent } from './components/admin/adm-manage/adm-manage.component';
 import { AdmCategoryComponent } from './components/admin/adm-category/adm-category.component';
+import { AdmProductsComponent } from './components/admin/adm-products/adm-products.component';
 
 @NgModule({
   declarations: [
@@ -29,8 +31,9 @@ import { AdmCategoryComponent } from './components/admin/adm-category/adm-catego
     RegisterComponent,
     AdmManageComponent,
     AdmCategoryComponent,
+    AdmProductsComponent,
   ],
-  imports: [BrowserModule, AppRoutingModule, HttpClientModule, FormsModule],
+  imports: [BrowserModule, AppRoutingModule, HttpClientModule, FormsModule, CommonModule],
   providers: [],
   bootstrap: [AppComponent],
 })

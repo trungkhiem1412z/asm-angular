@@ -1,0 +1,149 @@
+<div>
+    <div class="my-3">
+        <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#addCateModal">Thêm sản phẩm</button>
+    </div>
+    <!-- Modal Create -->
+    <div class="modal fade" id="addCateModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Thêm sản phẩm</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <!-- <form #addCate="ngForm" (ngSubmit)="onSubmit()"> -->
+                    <form #createProduct="ngForm">
+                        <div ngModelGroup="newProduct">
+                            <div class="mb-3">
+                                <label class="form-label" for="name">Tên sản phẩm:</label>
+                                <input type="text" class="form-control" id="name" [(ngModel)]="newProduct.nameProduct"
+                                    name="nameProduct" required>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Loại sản phẩm:</label>
+                                <select name="idCateProduct" [(ngModel)]="newProduct.idCateProduct"
+                                    class="form-select shadow-none">
+                                    class="form-select shadow-none">
+                                    <option selected>Chọn loại</option>
+                                    <ng-container *ngFor="let category of categories">
+                                        <option [value]="category.idCate">{{category.nameCate}}</option>
+                                    </ng-container>
+                                </select>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label" for="price">Giá:</label>
+                                <input class="form-control" name="priceProduct" type="number"
+                                    [(ngModel)]="newProduct.priceProduct">
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label" for="description">Mô tả:</label>
+                                <input class="form-control" name="description" type="text"
+                                    [(ngModel)]="newProduct.description">
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label" for="image">Image:</label>
+                                <input class="form-control" name="image_url" type="text"
+                                    [(ngModel)]="newProduct.image_url">
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
+                    <button type="submit" form="createProduct" (click)="addProduct()" class="btn btn-primary"
+                        data-bs-dismiss="modal">Thêm</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Table -->
+    <table class="table p-3">
+        <thead>
+            <tr>
+                <th scope="col">#Id</th>
+                <th scope="col">Hình ảnh</th>
+                <th scope="col">Tên sản phẩm</th>
+                <th scope="col">Loại sản phẩm</th>
+                <th scope="col">Giá</th>
+                <th scope="col">Thông tin</th>
+                <th scope="col">Sửa / Xoá</th>
+            </tr>
+        </thead>
+        <tbody *ngFor="let item of products">
+            <tr>
+                <th class="col-1" scope="row">{{ item.id }}</th>
+                <td class="col-2"><img src="{{ item.image_url }}" class="img-fluid" alt=""></td>
+                <td class="col-2">{{ item.nameProduct }}</td>
+                <td class="col-1">{{ item.category ? item.category.nameCate : '' }}</td>
+                <td class="col-1">{{ item.priceProduct }}</td>
+                <td class="col-3">{{ item.description }}</td>
+                <td class="col-2">
+                    <div class="d-flex">
+                        <!-- <button class="btn btn-primary me-2">Sửa</button> -->
+                        <button (click)="item.id !== undefined ? getProductDetailById(item.id) : null"
+                            class="btn btn-primary me-2" data-bs-toggle="modal" data-bs-target="#updateProdModal">
+                            Sửa
+                        </button>
+                        <button (click)="item.id !== undefined ? delProdById(item.id) : null" class="btn btn-danger">
+                            Xoá
+                        </button>
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <!-- Modal Update -->
+    <div class="modal fade" id="updateProdModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Sửa sản phẩm - #Id: {{prodDetail?.id}} </h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form #updateProd="ngForm">
+                        <div ngModelGroup="updateProd">
+                            <div class="mb-3">
+                                <label class="form-label" for="name">Tên sản phẩm:</label>
+                                <input type="text" class="form-control" value="{{prodDetail?.nameProduct}}"
+                                    name="udtnameProd" #udtnameProd required>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Loại sản phẩm:</label>
+                                <select #udtcateProd name="udtcateProd" [ngModel]="prodDetail?.idCateProduct"
+                                    class="form-select shadow-none">
+                                    <option [ngValue]="null" selected>Chọn loại</option>
+                                    <ng-container *ngFor="let category of categories">
+                                        <option [value]="category.idCate">{{category.nameCate}}</option>
+                                    </ng-container>
+                                </select>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label" for="price">Giá:</label>
+                                <input class="form-control" value="{{prodDetail?.priceProduct}}" name="udtpriceProd"
+                                    type="number" #udtpriceProd>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label" for="description">Mô tả:</label>
+                                <input class="form-control" name="description" value="{{prodDetail?.description}}"
+                                    type="text" #description>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label" for="image">Image:</label>
+                                <input class="form-control" name="image_url" type="text"
+                                    value="{{prodDetail?.image_url}}" #image_url>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
+                    <button type="submit" (click)="updatedProd(prodDetail?.id, updateProd.value)" form="updateProd"
+                        class="btn btn-primary" data-bs-dismiss="modal">
+                        Sửa
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AdmCategoryComponent } from './components/admin/adm-category/adm-category.component';
 import { AdmManageComponent } from './components/admin/adm-manage/adm-manage.component';
+import { AdmProductsComponent } from './components/admin/adm-products/adm-products.component';
 import { HomePageComponent } from './components/client/home-page/home-page.component';
 import { LoginComponent } from './components/login/login.component';
 import { PagenotfoundComponent } from './components/pagenotfound/pagenotfound.component';
@@ -32,6 +33,7 @@ const routes: Routes = [
     component: AdminLayoutComponent,
     children: [
       { path: '', title: 'Admin Manager', component: AdmManageComponent },
+      { path: 'products', title: 'Quản lý sản phẩm', component: AdmProductsComponent },
       { path: 'category', title: 'Quản lý danh mục', component: AdmCategoryComponent },
     ],
   },

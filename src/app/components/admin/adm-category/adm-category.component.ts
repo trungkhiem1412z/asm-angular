@@ -54,12 +54,9 @@ export class AdmCategoryComponent implements OnInit {
   // Update danh mục
   updatedCategory(idCate: number | undefined, updateCateFormValue: any) {
     const updatedCategoryDetail: UpdatedCategory = {
-      // nameCate: updateCateFormValue.nameCate,
-      // urlCate: updateCateFormValue.urlCate,
       nameCate: this.udtnameCate.nativeElement.value,
       urlCate: this.udturlCate.nativeElement.value,
     };
-    console.log(updatedCategoryDetail);
     this.categoryService.updateCateById(idCate!, updatedCategoryDetail).subscribe(
       (response) => {
         console.log(response);
