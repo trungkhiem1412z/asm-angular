@@ -10,6 +10,9 @@ import { RegisterComponent } from './components/register/register.component';
 import { AdminLayoutComponent } from './layout/admin-layout/admin-layout.component';
 import { ClientLayoutComponent } from './layout/client-layout/client-layout.component';
 
+// Guard
+import { AdminAuthGuard } from './guard/admin-auth.guard';
+
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
   {
@@ -31,6 +34,7 @@ const routes: Routes = [
   {
     path: 'admin',
     component: AdminLayoutComponent,
+    canActivate: [AdminAuthGuard],
     children: [
       { path: '', title: 'Admin Manager', component: AdmManageComponent },
       { path: 'products', title: 'Quản lý sản phẩm', component: AdmProductsComponent },
