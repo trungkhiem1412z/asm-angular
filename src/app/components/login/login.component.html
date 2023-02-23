@@ -1,17 +1,27 @@
 <div class="d-flex justify-content-center mt-4">
-    <form class="col-3" action="">
+    <form [formGroup]="loginForm" class="col-6 col-md-6 col-lg-4" action="">
         <div class="mb-3">
             <label class="form-label">Tài khoản</label>
-            <input type="text" class="form-control shadow-none" name="userName" placeholder="Tài khoản" required>
+            <input type="text" class="form-control shadow-none" formControlName="userName" name="userName"
+                placeholder="Tài khoản" required>
+            <div
+                *ngIf="loginForm.get('userName')?.invalid && (loginForm.get('userName')?.dirty || loginForm.get('userName')?.touched)">
+                <div *ngIf="loginForm.get('userName')?.errors.required">
+                    Tài khoản không được để trống
+                </div>
+            </div>
         </div>
         <div class="mb-3">
             <label class="form-label">Mật khẩu</label>
-            <input type="text" class="form-control shadow-none" name="password" placeholder="Mật khẩu" required>
+            <input type="password" class="form-control shadow-none" formControlName="password" name="password"
+                placeholder="Mật khẩu" required>
+            <div
+                *ngIf="loginForm.get('password')?.invalid && (loginForm.get('password')?.dirty || loginForm.get('password')?.touched)">
+                <div *ngIf="loginForm.get('password')?.errors.required">Mật khẩu không được để trống</div>
+            </div>
         </div>
-        <button class="btn btn-primary" type="submit">
+        <button class="btn btn-primary" [disabled]="loginForm.invalid" (click)="login()" type="submit">
             Đăng nhập
         </button>
     </form>
 </div>
-
-<!-- <div *ngIf="errorMessage" class="alert alert-danger mt-3">{{errorMessage}}</div> -->
