@@ -18,6 +18,10 @@ import { RegisterComponent } from './components/register/register.component';
 import { AdmManageComponent } from './components/admin/adm-manage/adm-manage.component';
 import { AdmCategoryComponent } from './components/admin/adm-category/adm-category.component';
 import { AdmProductsComponent } from './components/admin/adm-products/adm-products.component';
+import { CategoriesComponent } from './components/client/categories/categories.component';
+import { ProductsComponent } from './components/client/products/products.component';
+import { DetailComponent } from './components/client/detail/detail.component';
+import { CurrencySuffixPipe } from './pipe/currency-suffix.pipe';
 
 @NgModule({
   declarations: [
@@ -33,6 +37,10 @@ import { AdmProductsComponent } from './components/admin/adm-products/adm-produc
     AdmManageComponent,
     AdmCategoryComponent,
     AdmProductsComponent,
+    CategoriesComponent,
+    ProductsComponent,
+    DetailComponent,
+    CurrencySuffixPipe,
   ],
   imports: [
     BrowserModule,

@@ -9,9 +9,11 @@ import { PagenotfoundComponent } from './components/pagenotfound/pagenotfound.co
 import { RegisterComponent } from './components/register/register.component';
 import { AdminLayoutComponent } from './layout/admin-layout/admin-layout.component';
 import { ClientLayoutComponent } from './layout/client-layout/client-layout.component';
-
 // Guard
 import { AdminAuthGuard } from './guard/admin-auth.guard';
+import { CategoriesComponent } from './components/client/categories/categories.component';
+import { ProductsComponent } from './components/client/products/products.component';
+import { DetailComponent } from './components/client/detail/detail.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -20,7 +22,19 @@ const routes: Routes = [
     component: ClientLayoutComponent,
     children: [{ path: '', title: 'Trang chủ', component: HomePageComponent }],
   },
-  { path: 'products', title: 'Sản phẩm', component: ClientLayoutComponent },
+  {
+    path: 'categories',
+    component: ClientLayoutComponent,
+    children: [{ path: '', title: 'Sản phẩm theo hãng', component: CategoriesComponent }],
+  },
+  {
+    path: 'products',
+    component: ClientLayoutComponent,
+    children: [
+      { path: '', title: 'Sản phẩm', component: ProductsComponent },
+      { path: 'detail', title: 'Sản phẩm chi tiết', component: DetailComponent },
+    ],
+  },
   {
     path: 'login',
     component: ClientLayoutComponent,

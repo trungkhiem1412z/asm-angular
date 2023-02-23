@@ -9,6 +9,8 @@ import { Product } from '../interface/product';
 export class ProductService {
   // Lấy all sản phẩm
   private apiUrl = 'http://localhost:3000/products';
+  // Lấy sản phẩm theo loại
+  private apiUrlProdCate = 'http://localhost:3000/product/cate?cateid=';
   // Tạo sản phẩm
   private apiUrlCreate = 'http://localhost:3000/product/create';
   // Sửa sản phẩm
@@ -23,6 +25,10 @@ export class ProductService {
   // Lấy tất cả sản phẩm
   getProducts(): Observable<Product[]> {
     return this.http.get<Product[]>(this.apiUrl);
+  }
+  // Lấy sản phẩm theo danh mục
+  getProductsByCate(cateid: number): Observable<Product[]> {
+    return this.http.get<Product[]>(this.apiUrlProdCate + cateid);
   }
   // Tạo sản phẩm
   addProduct(newProduct: Product): Observable<Product[]> {

@@ -27,7 +27,7 @@ export class AuthService {
             username: response.userName,
             role: response.role,
           };
-          console.log(this.currentUser);
+          // console.log(this.currentUser);
           return response;
         } else {
           // Nếu response không hợp lệ hoặc không có token, trả về thông tin lỗi

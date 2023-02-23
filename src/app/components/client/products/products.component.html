@@ -1,0 +1,3 @@
+<div *ngFor="let item of products">
+    <a routerLink="/products/detail" [queryParams]="{id: item.id}">{{item.nameProduct}}</a>
+</div>

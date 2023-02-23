@@ -62,7 +62,7 @@ export class AdmProductsComponent implements OnInit {
     this.productService.getProductDetail(id).subscribe((data) => {
       this.prodDetail = data;
       this.prodDetail.idCateProduct = this.prodDetail.idCateProduct?.toString();
-      console.log(`Detail: ${JSON.stringify(this.prodDetail)}`);
+      // console.log(`Detail: ${JSON.stringify(this.prodDetail)}`);
       this.ngOnInit();
     });
   }

@@ -32,19 +32,24 @@
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
                         aria-expanded="false">
-                        Dropdown
+                        Loại sản phẩm
                     </a>
                     <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="#">Action</a></li>
-                        <li><a class="dropdown-item" href="#">Another action</a></li>
-                        <li>
-                            <hr class="dropdown-divider">
-                        </li>
-                        <li><a class="dropdown-item" href="#">Something else here</a></li>
+                        <ng-container *ngFor="let category of categories">
+                            <li>
+                                <a class="dropdown-item" routerLink='/categories'
+                                    [queryParams]="{cateid: category.idCate}">
+                                    {{category.nameCate}}
+                                </a>
+                            </li>
+                        </ng-container>
                     </ul>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link disabled">Disabled</a>
+                    <a class="nav-link" routerLink="/login">Đăng nhập</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" (click)="logout()">Đăng xuất</a>
                 </li>
             </ul>
             <form class="d-flex" role="search">
