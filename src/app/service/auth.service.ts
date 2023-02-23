@@ -24,10 +24,11 @@ export class AuthService {
           localStorage.setItem('access_token', response.token);
           // Lấy thông tin User
           this.currentUser = {
-            username: response.userName,
+            username: response.username,
             role: response.role,
           };
-          // console.log(this.currentUser);
+          // Lưu thông tin User vào Local storage
+          localStorage.setItem('user', JSON.stringify(this.currentUser));
           return response;
         } else {
           // Nếu response không hợp lệ hoặc không có token, trả về thông tin lỗi
@@ -49,8 +50,8 @@ export class AuthService {
     this.http.post(this.apiUrlLogout, {}, { headers: { Authorization: `Bearer ${token}` } }).subscribe(() => {
       // Xóa token khỏi local storage
       localStorage.removeItem('access_token');
-      // Current user null
-      this.currentUser = null;
+      // Xoá thông tin User trong Local Storage
+      localStorage.removeItem('user');
       // Điều hướng trở lại trang chủ
       this.router.navigate(['/home']);
     });
@@ -66,6 +67,8 @@ export class AuthService {
 
   // Lấy thông tin user hiện tại
   getCurrentUser() {
+    const dataUser = localStorage.getItem('user');
+    this.currentUser = JSON.parse(dataUser!);
     return this.currentUser;
   }
 }

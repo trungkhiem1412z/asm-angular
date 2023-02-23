@@ -1,5 +1,5 @@
 <div>
-    <div class="my-3">
+    <div class="ms-2 my-3">
         <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#addCateModal">Thêm sản phẩm</button>
     </div>
     <!-- Modal Create -->
@@ -75,7 +75,7 @@
                 <td class="col-2"><img src="{{ item.image_url }}" class="img-fluid" alt=""></td>
                 <td class="col-2">{{ item.nameProduct }}</td>
                 <td class="col-1">{{ item.category ? item.category.nameCate : '' }}</td>
-                <td class="col-1">{{ item.priceProduct }}</td>
+                <td class="col-1">{{ item.priceProduct | currencySuffix }}</td>
                 <td class="col-3">{{ item.description }}</td>
                 <td class="col-2">
                     <div class="d-flex">

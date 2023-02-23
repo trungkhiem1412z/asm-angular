@@ -23,12 +23,6 @@ export class DetailComponent implements OnInit {
   }
   // Lấy sản phẩm chi tiết
   getProductDetailById() {
-    // this.productService.getProductDetail(id).subscribe((data) => {
-    //   this.prodDetail = data;
-    //   this.prodDetail.idCateProduct = this.prodDetail.idCateProduct?.toString();
-    //   console.log(`Detail: ${JSON.stringify(this.prodDetail)}`);
-    //   this.ngOnInit();
-    // });
     this.route.queryParamMap.subscribe((params) => {
       this.id = params.get('id');
       this.productService.getProductDetail(this.id).subscribe((data) => {

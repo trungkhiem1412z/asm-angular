@@ -14,7 +14,7 @@ export class AdminAuthGuard implements CanActivate {
     state: RouterStateSnapshot
   ): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
     const currentUser = this.authService.getCurrentUser();
-    if (currentUser && currentUser.role === 'admin') {
+    if (currentUser?.role === 'admin') {
       return true;
     }
     // Người dùng không có quyền admin

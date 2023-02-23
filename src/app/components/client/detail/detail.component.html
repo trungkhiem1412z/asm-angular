@@ -1,4 +1,13 @@
-<div>
-    <span>Tên: {{prodDetail?.nameProduct}}</span>
-    <span>Giá: {{prodDetail!.priceProduct | currencySuffix }}</span>
+<div class="container">
+    <div class="d-flex flex-column text-center mt-2">
+        <div class="imageProduct mb-1">
+            <img class="container-fluid" src="{{prodDetail?.image_url}}" alt="">
+        </div>
+        <div class="nameProduct mb-1">
+            <span>Tên: {{prodDetail?.nameProduct}}</span>
+        </div>
+        <div class="priceProduct mb-1">
+            <span>Giá: {{prodDetail!.priceProduct | currencySuffix }}</span>
+        </div>
+    </div>
 </div>
