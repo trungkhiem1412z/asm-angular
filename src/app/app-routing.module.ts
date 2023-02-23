@@ -14,6 +14,7 @@ import { AdminAuthGuard } from './guard/admin-auth.guard';
 import { CategoriesComponent } from './components/client/categories/categories.component';
 import { ProductsComponent } from './components/client/products/products.component';
 import { DetailComponent } from './components/client/detail/detail.component';
+import { UserauthGuard } from './guard/userauth.guard';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -38,6 +39,7 @@ const routes: Routes = [
   {
     path: 'login',
     component: ClientLayoutComponent,
+    canActivate: [UserauthGuard],
     children: [{ path: '', title: 'Đăng nhập', component: LoginComponent }],
   },
   {
