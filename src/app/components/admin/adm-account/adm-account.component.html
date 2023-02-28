@@ -47,8 +47,8 @@
                     <form #updateUserInfo2="ngForm">
                         <div ngModelGroup="updateUserInfo2">
                             <div class="mb-3">
-                                <label class="form-label" for="name">Ảnh đại diện:</label>
-                                <img src="{{userInfo?.img_avt}}" alt="">
+                                <label class="form-label" for="name">Ảnh đại diện:</label><br>
+                                <img class="mb-2" style="border-radius: 50%;" src="{{userInfo?.img_avt}}" alt="">
                                 <input type="text" class="form-control" value="{{userInfo?.img_avt}}" name="udtimgavt"
                                     #udtimgavt>
                             </div>
