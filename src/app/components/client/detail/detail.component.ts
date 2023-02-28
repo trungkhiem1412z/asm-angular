@@ -19,18 +19,27 @@ export class DetailComponent implements OnInit {
 
   // Lấy tất cả sản phẩm chi tiết
   ngOnInit() {
-    this.getProductDetailById();
-  }
-  // Lấy sản phẩm chi tiết
-  getProductDetailById() {
+    // this.getProductDetailById();
     this.route.queryParamMap.subscribe((params) => {
       this.id = params.get('id');
       this.productService.getProductDetail(this.id).subscribe((data) => {
         this.prodDetail = data;
         this.prodDetail.idCateProduct = this.prodDetail.idCateProduct?.toString();
         // console.log(`Detail: ${JSON.stringify(this.prodDetail)}`);
-        this.ngOnInit();
+        // this.ngOnInit();
       });
     });
   }
+  // Lấy sản phẩm chi tiết
+  // getProductDetailById() {
+  //   this.route.queryParamMap.subscribe((params) => {
+  //     this.id = params.get('id');
+  //     this.productService.getProductDetail(this.id).subscribe((data) => {
+  //       this.prodDetail = data;
+  //       this.prodDetail.idCateProduct = this.prodDetail.idCateProduct?.toString();
+  //       // console.log(`Detail: ${JSON.stringify(this.prodDetail)}`);
+  //       this.ngOnInit();
+  //     });
+  //   });
+  // }
 }

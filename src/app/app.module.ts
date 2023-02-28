@@ -22,6 +22,8 @@ import { CategoriesComponent } from './components/client/categories/categories.c
 import { ProductsComponent } from './components/client/products/products.component';
 import { DetailComponent } from './components/client/detail/detail.component';
 import { CurrencySuffixPipe } from './pipe/currency-suffix.pipe';
+import { AdmAccountComponent } from './components/admin/adm-account/adm-account.component';
+import { ListCateComponent } from './components/client/list-cate/list-cate.component';
 
 @NgModule({
   declarations: [
@@ -41,6 +43,8 @@ import { CurrencySuffixPipe } from './pipe/currency-suffix.pipe';
     ProductsComponent,
     DetailComponent,
     CurrencySuffixPipe,
+    AdmAccountComponent,
+    ListCateComponent,
   ],
   imports: [
     BrowserModule,

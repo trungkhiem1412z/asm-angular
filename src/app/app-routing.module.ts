@@ -11,10 +11,12 @@ import { AdminLayoutComponent } from './layout/admin-layout/admin-layout.compone
 import { ClientLayoutComponent } from './layout/client-layout/client-layout.component';
 // Guard
 import { AdminAuthGuard } from './guard/admin-auth.guard';
+import { AccountGuard } from './guard/account.guard';
 import { CategoriesComponent } from './components/client/categories/categories.component';
 import { ProductsComponent } from './components/client/products/products.component';
 import { DetailComponent } from './components/client/detail/detail.component';
 import { UserauthGuard } from './guard/userauth.guard';
+import { AdmAccountComponent } from './components/admin/adm-account/adm-account.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -50,11 +52,17 @@ const routes: Routes = [
   {
     path: 'admin',
     component: AdminLayoutComponent,
-    canActivate: [AdminAuthGuard],
+    canActivate: [AccountGuard],
     children: [
-      { path: '', title: 'Admin Manager', component: AdmManageComponent },
+      { path: '', title: 'Admin Manager', component: AdmProductsComponent },
       { path: 'products', title: 'Quản lý sản phẩm', component: AdmProductsComponent },
       { path: 'category', title: 'Quản lý danh mục', component: AdmCategoryComponent },
+      {
+        path: 'account',
+        title: 'Quản lý tài khoản',
+        component: AdmAccountComponent,
+        canActivate: [AdminAuthGuard],
+      },
     ],
   },
   { path: '**', title: '404', component: PagenotfoundComponent },

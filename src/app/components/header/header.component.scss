@@ -7,16 +7,18 @@
     }
 }
 
-// .navbar {
-//     .navbar-brand {
-//         img {
-//             width: 120px;
-//         }
+.navbar {
+    // background-color: #b8d9fd;
+    .navbar-brand {
+        img {
+            width: 120px;
+        }
+    }
+}
+
+// @media screen and (max-width: 480px) {
+//     .header-top {
+//         display: none;
 //     }
 // }
 
-@media screen and (max-width: 480px) {
-    .header-top {
-        display: none;
-    }
-}

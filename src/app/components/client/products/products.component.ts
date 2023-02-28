@@ -13,10 +13,10 @@ export class ProductsComponent implements OnInit {
   products: Product[] = [];
 
   ngOnInit() {
-    this.getAllProduct();
-  }
-  // Hàm lấy tất cả sản phẩm
-  getAllProduct() {
     this.productService.getProducts().subscribe((products) => (this.products = products));
   }
+  // Hàm lấy tất cả sản phẩm
+  // getAllProduct() {
+  //   this.productService.getProducts().subscribe((products) => (this.products = products));
+  // }
 }

@@ -1,9 +1,14 @@
 <div class="container">
     <div class="row row-cols-2 row-cols-md-3 row-cols-lg-5 mt-3">
         <div *ngFor="let item of products">
-            <div class="text-center">
-                <img class="container-fluid mb-1" src="{{item.image_url}}" alt="">
+            <div class="product text-center">
+                <div class="height: 300px">
+                    <img class="container-fluid mb-1" src="{{item.image_url}}" height="100%" alt="">
+                </div>
                 <a class="mb-1" routerLink="/products/detail" [queryParams]="{id: item.id}">{{item.nameProduct}}</a>
+                <div>
+                    <span>Hãng: {{item.category?.nameCate}}</span>
+                </div>
                 <div>
                     <span>Giá: {{item.priceProduct | currencySuffix}}</span>
                 </div>
@@ -11,6 +16,3 @@
         </div>
     </div>
 </div>
-<!-- <div *ngFor="let item of products">
-    <a routerLink="/products/detail" [queryParams]="{id: item.id}">{{item.nameProduct}}</a>
-</div> -->

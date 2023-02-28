@@ -1,0 +1,83 @@
+<div class="px-3 mt-2">
+    <h3>Quản lý tài khoản</h3>
+    <!-- Table -->
+    <table class="table p-3">
+        <thead>
+            <tr>
+                <th scope="col">#Id</th>
+                <th scope="col">Ảnh đại diện</th>
+                <th scope="col">Tài khoản</th>
+                <th scope="col">Tên Người Dùng</th>
+                <th scope="col">Role</th>
+                <th scope="col">Sửa / Xoá</th>
+            </tr>
+        </thead>
+        <tbody *ngFor="let acc of accounts">
+            <tr>
+                <th class="col-1" scope="row">{{ acc.id }}</th>
+                <td class="col-2">
+                    <img src="{{acc.img_avt}}" alt="">
+                </td>
+                <td class="col-2">{{acc.userName}}</td>
+                <td class="col-2">{{ acc.fullName }}</td>
+                <td class="col-3">{{ acc.role?.name }}</td>
+                <td class="col-2">
+                    <div class="d-flex">
+                        <button (click)="acc.id !== undefined ? getUserInfo(acc.id) : null" class="btn btn-primary me-2"
+                            data-bs-toggle="modal" data-bs-target="#updateUserModal">
+                            Sửa
+                        </button>
+                        <button (click)="acc.id !== undefined ? delAccout(acc.id) : null" class="btn btn-danger">
+                            Xoá
+                        </button>
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <!-- Modal Update -->
+    <div class="modal fade" id="updateUserModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Sửa thông tin - #Id: {{userInfo?.id}} </h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form #updateUserInfo2="ngForm">
+                        <div ngModelGroup="updateUserInfo2">
+                            <div class="mb-3">
+                                <label class="form-label" for="name">Ảnh đại diện:</label>
+                                <img src="{{userInfo?.img_avt}}" alt="">
+                                <input type="text" class="form-control" value="{{userInfo?.img_avt}}" name="udtimgavt"
+                                    #udtimgavt>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label" for="name">Tên người dùng:</label>
+                                <input type="text" class="form-control" value="{{userInfo?.fullName}}"
+                                    name="udtnameUser" #udtnameUser required>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Role:</label>
+                                <select #udtRoleUser name="udtRoleUser" [ngModel]="userInfo?.roleid"
+                                    class="form-select shadow-none">
+                                    <option [ngValue]="null" selected>Chọn Role</option>
+                                    <ng-container *ngFor="let role of listrole">
+                                        <option [value]="role.idRole">{{role.name}}</option>
+                                    </ng-container>
+                                </select>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
+                    <button type="submit" (click)="updateUserInfo(userInfo?.id, updateUserInfo2.value)"
+                        form="updateUserInfo2" class="btn btn-primary" data-bs-dismiss="modal">
+                        Sửa
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

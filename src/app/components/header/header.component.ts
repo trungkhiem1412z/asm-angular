@@ -25,7 +25,7 @@ export class HeaderComponent implements OnInit {
     this.getAllCate();
     const dataUser = localStorage.getItem('user');
     this.currentUser = JSON.parse(dataUser!);
-    if (this.currentUser?.role == null) {
+    if (this.currentUser?.role != null) {
       this.isLoggedIn = true;
     }
   }
@@ -35,6 +35,7 @@ export class HeaderComponent implements OnInit {
   }
   // Đăng xuất
   logout() {
+    this.isLoggedIn = false;
     this.authService.logout();
   }
 }

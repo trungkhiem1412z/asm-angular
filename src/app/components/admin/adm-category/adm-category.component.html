@@ -3,7 +3,7 @@
     Thêm danh mục
 </button>
 
-<div *ngFor="let category of categories">
+<!-- <div *ngFor="let category of categories">
     <div class="d-flex mb-2 ms-2">
         <span class="me-2">{{ category.nameCate }}</span>
         <button (click)="category.idCate !== undefined ? getCateDetailById(category.idCate) : null"
@@ -14,7 +14,38 @@
             Xoá
         </button>
     </div>
-</div>
+</div> -->
+
+<!-- Table -->
+<table class="table p-3">
+    <thead>
+        <tr>
+            <th scope="col">#Id</th>
+            <th scope="col">Tên Danh Mục</th>
+            <th scope="col">Url Danh Mục</th>
+            <th scope="col">Sửa / Xoá</th>
+        </tr>
+    </thead>
+    <tbody *ngFor="let category of categories">
+        <tr>
+            <th class="col-1" scope="row">{{ category.idCate }}</th>
+            <td class="col-2">{{ category.nameCate }}</td>
+            <td class="col-2">{{ category.urlCate }}</td>
+            <td class="col-2">
+                <div class="d-flex">
+                    <button (click)="category.idCate !== undefined ? getCateDetailById(category.idCate) : null"
+                        class="btn btn-primary me-2" data-bs-toggle="modal" data-bs-target="#updateCateModal">
+                        Sửa
+                    </button>
+                    <button (click)="category.idCate !== undefined ? delCateById(category.idCate) : null"
+                        class="btn btn-danger">
+                        Xoá
+                    </button>
+                </div>
+            </td>
+        </tr>
+    </tbody>
+</table>
 
 <!-- Modal Create -->
 <div class="modal fade" id="addCateModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">

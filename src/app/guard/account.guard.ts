@@ -7,18 +7,18 @@ import { AuthService } from '../service/auth.service';
 @Injectable({
   providedIn: 'root',
 })
-export class AdminAuthGuard implements CanActivate {
+export class AccountGuard implements CanActivate {
   constructor(private authService: AuthService, private router: Router) {}
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
   ): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
     const currentUser = this.authService.getCurrentUser();
-    if (currentUser?.role === 'admin') {
+    if (currentUser?.role === 'admin' || currentUser?.role === 'ctv') {
       return true;
     }
     // Người dùng không có quyền admin
-    this.router.navigate(['/admin']);
+    this.router.navigate(['/home']);
     return false;
   }
 }

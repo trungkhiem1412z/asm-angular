@@ -22,13 +22,15 @@ export class AuthService {
         if (response && response.token) {
           // Lưu token trả về từ server trong local storage
           localStorage.setItem('access_token', response.token);
+          // sessionStorage.setItem('access_token', response.token);
           // Lấy thông tin User
           this.currentUser = {
             username: response.username,
             role: response.role,
           };
-          // Lưu thông tin User vào Local storage
+          // Lưu thông tin User vào sessionStorage
           localStorage.setItem('user', JSON.stringify(this.currentUser));
+          // sessionStorage.setItem('user', JSON.stringify(this.currentUser));
           return response;
         } else {
           // Nếu response không hợp lệ hoặc không có token, trả về thông tin lỗi
@@ -44,20 +46,21 @@ export class AuthService {
   }
 
   logout() {
-    // Lấy token từ local storage
+    // Lấy token từ sessionStorage
     const token = localStorage.getItem('access_token');
     // Gọi đến API authLogout để xóa token khỏi server
     this.http.post(this.apiUrlLogout, {}, { headers: { Authorization: `Bearer ${token}` } }).subscribe(() => {
-      // Xóa token khỏi local storage
+      // Xóa token khỏi sessionStorage
       localStorage.removeItem('access_token');
-      // Xoá thông tin User trong Local Storage
+      // sessionStorage.removeItem('access_token');
+      // Xoá thông tin User trong sessionStorage
       localStorage.removeItem('user');
       // Điều hướng trở lại trang chủ
       this.router.navigate(['/home']);
     });
   }
   isLoggedIn() {
-    // Kiểm tra xem token có tồn tại trong local storage hay không
+    // Kiểm tra xem token có tồn tại trong sessionStorage hay không
     return localStorage.getItem('access_token') !== null;
   }
   getToken() {

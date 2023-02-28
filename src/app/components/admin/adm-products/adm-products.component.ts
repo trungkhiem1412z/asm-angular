@@ -44,19 +44,20 @@ export class AdmProductsComponent implements OnInit {
 
   // Lấy tất cả sản phẩm
   ngOnInit() {
-    this.getAllProduct();
-    this.getAllCate();
+    this.productService.getProducts().subscribe((products) => (this.products = products));
+    this.categoryService.getCategories().subscribe((categories) => (this.categories = categories));
+
     // Đặt giá trị mặc định cho selected tạo sản phẩm
     this.newProduct.idCateProduct = 'Chọn loại';
   }
   // Hàm lấy tất cả sản phẩm
-  getAllProduct() {
-    this.productService.getProducts().subscribe((products) => (this.products = products));
-  }
+  // getAllProduct() {
+  //   this.productService.getProducts().subscribe((products) => (this.products = products));
+  // }
   // Lấy tất cả danh mục
-  getAllCate() {
-    this.categoryService.getCategories().subscribe((categories) => (this.categories = categories));
-  }
+  // getAllCate() {
+  //   this.categoryService.getCategories().subscribe((categories) => (this.categories = categories));
+  // }
   // Lấy sản phẩm chi tiết
   getProductDetailById(id: number) {
     this.productService.getProductDetail(id).subscribe((data) => {
